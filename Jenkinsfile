@@ -35,7 +35,7 @@ pipeline {
                       -Dsonar.projectKey=my-secure-app \
                       -Dsonar.projectName="My Secure App" \
                       -Dsonar.sources=. \
-                      -Dsonar.host.url=http://192.168.56.11:9000
+                      -Dsonar.host.url=http://192.168.68.11:9000
                     '''
                 }
             }
