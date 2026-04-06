@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         DOCKER_CREDS_ID = 'docker-hub-creds'
-        IMAGE_NAME = 'your_dockerhub_username/my-secure-app'
+        IMAGE_NAME = 'trangdevops/my-secure-app'
         IMAGE_TAG = "v1.0.${BUILD_NUMBER}"
     }
 
