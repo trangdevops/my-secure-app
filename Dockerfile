@@ -1,8 +1,8 @@
-# Sử dụng Nginx bản Alpine (Rất nhẹ và ít lỗ hổng hệ điều hành)
-FROM nginx:alpine
+# Sử dụng phiên bản Nginx unprivileged chính thức từ NGINX Inc.
+FROM nginxinc/nginx-unprivileged:alpine
 
-# Copy file code của chúng ta vào thư mục web mặc định của Nginx
+# Copy mã nguồn vào thư mục web
 COPY index.html /usr/share/nginx/html/index.html
 
-# Mở port 80 cho ứng dụng
-EXPOSE 80
+# Mở port 8080 thay vì 80 (vì Linux không cho phép user thường mở port dưới 1024)
+EXPOSE 8080
