@@ -29,14 +29,19 @@ pipeline {
 
         stage('3. SAST: SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube-Server') {
-                    sh '''
-                    sonar-scanner \
-                      -Dsonar.projectKey=my-secure-app \
-                      -Dsonar.projectName="My Secure App" \
-                      -Dsonar.sources=. \
-                      -Dsonar.host.url=http://192.168.68.11:9000
-                    '''
+                script {
+                    // Yêu cầu Jenkins tìm đường dẫn tuyệt đối của công cụ đã cài
+                    def scannerHome = tool 'sonar-scanner'
+                    
+                    // Gọi môi trường SonarQube (Tự động inject URL và Token)
+                    withSonarQubeEnv('SonarQube-Server') {
+                        sh """
+                        ${scannerHome}/bin/sonar-scanner \\
+                          -Dsonar.projectKey=my-secure-app \\
+                          -Dsonar.projectName="My Secure App" \\
+                          -Dsonar.sources=.
+                        """
+                    }
                 }
             }
         }
